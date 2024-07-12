@@ -6,9 +6,9 @@ import React from "react";
 const Feature = (props) => {
 
     return (
-        <div class="feature-item">
-            <img src={props.src} alt="Chat Icon" class="feature-icon" />
-            <h3 class="feature-item-title">{props.title}</h3>
+        <div className="feature-item">
+            <img src={props.src} alt="Chat Icon" className="feature-icon" />
+            <h3 className="feature-item-title">{props.title}</h3>
             {props.children}
         </div>
     );
