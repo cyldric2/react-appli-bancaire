@@ -7,6 +7,6 @@ import UserSlice from "./UserSlice";
 
 export default combineReducers({
     postReducer,
-    userReducer,
+
     UserSlice
 })

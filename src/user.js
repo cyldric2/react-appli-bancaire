@@ -11,7 +11,6 @@ store.dispatch(getPosts())
 
 const User = () => {
     const email = useSelector((state) => state.User.postReducer.body.email);
-    console.log(email);
     const firstName = useSelector((state) => state.User.postReducer.body.firstName);
     const lastName = useSelector((state) => state.User.postReducer.body.lastName);
     const userName = useSelector((state) => state.User.postReducer.body.userName);

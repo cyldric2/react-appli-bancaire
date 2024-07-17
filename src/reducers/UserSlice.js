@@ -8,7 +8,6 @@ export const loginUser = createAsyncThunk(
     async (userCredentials) => {
         const request = await axios.post(`http://localhost:3001/api/v1/user/login`, userCredentials);
         const response = await request.data.body.token;
-        console.log(response);
         localStorage.setItem('user', response);
         return response;
     }
@@ -38,7 +37,7 @@ const authSlice = createSlice({
                 state.user = null;
                 console.log(action.error.message);
                 if (action.error.message === 'Request failed with status code 400') {
-                    state.error = 'accès refusé ! informations d identification invalides'
+                    state.error = ` accès refusé ! informations d'identification invalides`
                 }
                 else {
                     state.error = action.error.message

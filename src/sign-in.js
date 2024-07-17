@@ -12,26 +12,6 @@ import { loginUser } from "./reducers/UserSlice";
 
 const SignIN = () => {
 
-    //redux state
-    const { loading, error } = useSelector((state) => state.User)
-
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const handleLoginEvent = (e) => {
-        e.preventDefault();
-        let userCredentials = { email, password }
-        dispatch(loginUser(userCredentials)).then((result) => {
-            if (result.payload) {
-                setEmail('');
-                setPassword('');
-                navigate('user');
-
-
-            }
-        })
-    }
-
-
     // mémorisation email et mot de passe 
     const [email, setEmail] = useState(() => (localStorage.checkbox ? localStorage.username : ""));
     const [password, setPassword] = useState(() => (localStorage.checkbox ? localStorage.password : ""));
@@ -44,6 +24,28 @@ const SignIN = () => {
             localStorage.checkbox = isChecked ? "1" : "";
         }
     };
+
+    //redux state
+    const { loading, error } = useSelector((state) => state.User.UserSlice)
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const handleLoginEvent = (e) => {
+        e.preventDefault();
+        const userCredentials = { email, password }
+        dispatch(loginUser(userCredentials)).then((result) => {
+            if (result.payload) {
+                setEmail('');
+                setPassword('');
+                navigate('user');
+
+
+            }
+        })
+    }
+
+
+
 
     return (
         <div className="bg-dark">
@@ -77,7 +79,7 @@ const SignIN = () => {
                         </button>
 
                         {error && (
-                            <div role="alert">{error}</div>
+                            <div className="alert" role="alert">{error}</div>
                         )}
 
                     </form>
