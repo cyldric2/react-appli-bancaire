@@ -3,6 +3,7 @@ import axios from 'axios';
 
 
 
+
 export const loginUser = createAsyncThunk(
     'user/loginUser',
     async (userCredentials) => {
@@ -12,6 +13,8 @@ export const loginUser = createAsyncThunk(
         return response;
     }
 )
+
+
 
 const authSlice = createSlice({
     name: "user",

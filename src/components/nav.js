@@ -23,10 +23,10 @@ const Nav = (props) => {
                 <h1 className="sr-only">Argent Bank</h1>
             </Link>
             <div>
-                <FontAwesomeIcon icon={faCircleUser} />
-                <a>
-                    {props.name}
-                </a>
+                <Link to="/signIn/user">
+                    <FontAwesomeIcon icon={faCircleUser} />
+                    <a>{props.name}</a>
+                </Link>
                 {props.icone && <FontAwesomeIcon icon={props.icone} />}
                 <Link to={props.to} className="main-nav-item"   >
                     {props.sign}

@@ -17,7 +17,6 @@ import store from "./store";
 
 library.add(fas)
 
-// ...
 
 
 
@@ -33,12 +32,10 @@ const route = createBrowserRouter([
     {
         path: "signIn/user",
         element: <User />
-
     },
     {
         path: "*",
         element: <App />
-
     }
 ])
 

@@ -4,23 +4,20 @@ import Nav from "./components/nav";
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import Post from "./components/Post"
 import { useSelector } from "react-redux";
-import { getPosts } from "./actions/post.action";
-import store from "./store";
 
-store.dispatch(getPosts())
 
-const User = () => {
-    const email = useSelector((state) => state.User.postReducer.body.email);
-    const firstName = useSelector((state) => state.User.postReducer.body.firstName);
-    const lastName = useSelector((state) => state.User.postReducer.body.lastName);
-    const userName = useSelector((state) => state.User.postReducer.body.userName);
+
+
+const User = (state) => {
+    const posts = useSelector((state) => state.User.postReducer.user)
+
 
     return (
         <div className="bg-dark">
-            <Nav name={firstName} sign="Sign Out" icone={faRightFromBracket} to="/" />
+            <Nav name={posts.userName} sign="Sign Out" icone={faRightFromBracket} to="/" />
             <main >
-                <Post email={email} firstName={firstName}
-                    lastName={lastName} userName={userName} />
+                <Post posts={posts}
+                />
                 <h2 className="sr-only">Accounts</h2>
                 <section className="account">
                     <div className="account-content-wrapper">

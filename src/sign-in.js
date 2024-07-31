@@ -6,7 +6,7 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "./reducers/UserSlice";
-
+import { getUserInfos } from "./reducers/post.reducer";
 
 
 
@@ -15,18 +15,24 @@ const SignIN = () => {
     // mémorisation email et mot de passe 
     const [email, setEmail] = useState(() => (localStorage.checkbox ? localStorage.username : ""));
     const [password, setPassword] = useState(() => (localStorage.checkbox ? localStorage.password : ""));
-    const [isChecked, setIsChecked] = useState(() => !!localStorage.checkbox);
+    const [isChecked, setIsChecked] = useState(() => !localStorage.checkbox);
 
     const loginSubmit = () => {
-        if (isChecked && email !== "") {
+        if (isChecked === true && email !== "") {
             localStorage.username = email;
             localStorage.password = password;
-            localStorage.checkbox = isChecked ? "1" : "";
+            localStorage.checkbox = isChecked;
+        }
+        else {
+            localStorage.username = "";
+            localStorage.password = "";
+            localStorage.checkbox = isChecked;
+
         }
     };
 
     //redux state
-    const { loading, error } = useSelector((state) => state.User.UserSlice)
+    const { loading, error } = useSelector((state) => state.User)
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -37,14 +43,13 @@ const SignIN = () => {
             if (result.payload) {
                 setEmail('');
                 setPassword('');
-                navigate('user');
-
-
+                dispatch(getUserInfos(result.payload)).then(result => {
+                    navigate('user');
+                })
             }
+
         })
     }
-
-
 
 
     return (

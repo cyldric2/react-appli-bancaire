@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <div>
-      <Nav sign="Sign In" to="SignIN" />
+      <Nav sign="Sign In" to="signIn" />
       <main>
         <div className="hero">
           <section className="hero-content">
