@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserInfos } from "../reducers/post.reducer";
-import { editPost } from "../actions/post.action";
+import { editPost } from "../reducers/post.reducer";
 
 const Post = ({ posts }) => {
     const [isOpen, setIsOpen] = useState(true)
@@ -11,7 +11,7 @@ const Post = ({ posts }) => {
     const userNameNew = useRef()
     const dispatch = useDispatch()
     const token = localStorage.getItem('user')
-
+    console.log(token);
 
     const handleform = async (e) => {
         e.preventDefault()
@@ -21,8 +21,8 @@ const Post = ({ posts }) => {
 
         };
 
-        await dispatch(editPost(postData));
-        dispatch(getUserInfos(token));
+        dispatch(editPost(postData));
+        console.log(postData)
         userNameNew.current.reset();
 
     }

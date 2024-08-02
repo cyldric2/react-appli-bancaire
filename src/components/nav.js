@@ -24,8 +24,8 @@ const Nav = (props) => {
             </Link>
             <div>
                 <Link to="/signIn/user">
-                    <FontAwesomeIcon icon={faCircleUser} />
-                    <a>{props.name}</a>
+                    <FontAwesomeIcon icon={faCircleUser} className="main-nav-item" />
+                    {props.name}
                 </Link>
                 {props.icone && <FontAwesomeIcon icon={props.icone} />}
                 <Link to={props.to} className="main-nav-item"   >

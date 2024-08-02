@@ -1,7 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const token = localStorage.getItem('user')
+console.log(token);
+export const editPost = createAsyncThunk(
+    'user/editPost',
+    async (postData) => {
+        const request = await axios.put(`http://localhost:3001/api/v1/user/profile`, postData, {
+            headers: { 'Authorization': 'Bearer' + token }
+        })
 
+        const response = await request.data.body;
+        console.log(response);
+        return response;
+
+
+    })
 
 export const getUserInfos = createAsyncThunk(
     'user/userInfos',
@@ -10,6 +24,7 @@ export const getUserInfos = createAsyncThunk(
             headers: { 'Authorization': 'Bearer' + token }
         })
         const response = await request.data.body;
+        console.log(response);
         return response;
     }
 )
@@ -44,6 +59,10 @@ const userInfosSlice = createSlice({
                 else {
                     state.error = action.error.message
                 }
+            })
+            .addCase(editPost.fulfilled, (state, action) => {
+                state.user.userName = action.payload.userName;
+                state.error = null
             })
 
     }
